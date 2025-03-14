@@ -60,6 +60,25 @@ bool vec<L>::operator!=(const vec<L> &instance) const
 }
 
 template<size_t L>
+vec<L> vec<L>::operator+(const vec<L> &instance) const
+{
+    vec<L> result;
+    for (size_t i = 0; i < L; i++) 
+        result.data[i] = data[i] + instance.data[i];
+
+    return (result);
+}
+
+template<size_t L>
+vec<L> &vec<L>::operator+=(const vec<L> &instance)
+{
+    for (size_t i = 0; i < L; i++) 
+        data[i] += instance.data[i];
+
+    return (*this);
+}
+
+template<size_t L>
 void vec<L>::print() const
 {
     for (size_t i = 0; i < L; i++)
@@ -67,6 +86,10 @@ void vec<L>::print() const
 }
 
 vec2::vec2(): vec<2>()
+{
+}
+
+vec2::vec2(const vec<2> &instance): vec<2>(instance)
 {
 }
 
@@ -82,6 +105,10 @@ vec3::vec3(): vec<3>()
 {
 }
 
+vec3::vec3(const vec<3> &instance): vec<3>(instance)
+{
+}
+
 vec3::vec3(float x, float y, float z): vec<3>(x, y, z)
 {
 }
@@ -91,6 +118,10 @@ vec3::~vec3()
 }
 
 vec4::vec4(): vec<4>()
+{
+}
+
+vec4::vec4(const vec<4> &instance): vec<4>(instance)
 {
 }
 

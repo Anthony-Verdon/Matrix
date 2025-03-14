@@ -15,6 +15,8 @@ struct vec
 
         bool operator==(const vec &instance) const;
         bool operator!=(const vec &instance) const;
+        vec operator+(const vec &instance) const;
+        vec &operator+=(const vec &instance);
 
         void print() const;
 
@@ -29,6 +31,7 @@ struct vec2: public vec<2>
         float &y = data[1];
 
         vec2();
+        vec2(const vec<2> &instance);
         vec2(float x, float y);
         ~vec2();
 };
@@ -41,6 +44,7 @@ struct vec3: public vec<3>
         float &z = data[2];
 
         vec3();
+        vec3(const vec<3> &instance);
         vec3(float x, float y, float z);
         ~vec3();
 };
@@ -54,6 +58,7 @@ struct vec4: public vec<4>
         float &w = data[3];
 
         vec4();
+        vec4(const vec<4> &instance);
         vec4(float x, float y, float z, float w);
         ~vec4();
 };
