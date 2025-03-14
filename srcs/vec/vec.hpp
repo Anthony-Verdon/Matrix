@@ -10,9 +10,11 @@ struct vec
         template<typename... Args>
         vec(Args... args);
         vec(const vec &instance);
+        vec &operator=(const vec &instance);
         ~vec();
 
-        vec &operator=(const vec &instance);
+        bool operator==(const vec &instance) const;
+        bool operator!=(const vec &instance) const;
 
         void print() const;
 

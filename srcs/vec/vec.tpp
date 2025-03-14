@@ -42,6 +42,24 @@ vec<L>::~vec()
 }
 
 template<size_t L>
+bool vec<L>::operator==(const vec<L> &instance) const
+{
+    for (size_t i = 0; i < L; i++) 
+    {
+        if (data[i] != instance.data[i])
+            return (false);
+    }
+
+    return (true);
+}
+
+template<size_t L>
+bool vec<L>::operator!=(const vec<L> &instance) const
+{
+    return (!(*this == instance));
+}
+
+template<size_t L>
 void vec<L>::print() const
 {
     for (size_t i = 0; i < L; i++)
