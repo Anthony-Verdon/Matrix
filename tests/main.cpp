@@ -10,18 +10,10 @@ int main()
     vecC += vecA;
     vecC.print();
 
-    std::cout << vecC[0] << std::endl;
-    std::cout << vecC[1] << std::endl;
-    std::cout << vecC[2] << std::endl;
-
-    try
-    {
-        std::cout << vecC[3] << std::endl;
-    }
-    catch (const std::exception &exception)
-    {
-        std::cout << exception.what() << std::endl;
-    }
+    vecC -= vecA;
+    vecC.print();
+    vec3 vecD = vecC - vecB;
+    vecD.print();
 
     return (0);
 }
