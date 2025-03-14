@@ -13,6 +13,9 @@ struct vec
         vec &operator=(const vec &instance);
         ~vec();
 
+        float &operator[](size_t index);
+        const float &operator[](size_t index) const;
+        
         bool operator==(const vec &instance) const;
         bool operator!=(const vec &instance) const;
         vec operator+(const vec &instance) const;

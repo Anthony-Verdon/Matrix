@@ -42,11 +42,29 @@ vec<L>::~vec()
 }
 
 template<size_t L>
+float &vec<L>::operator[](size_t index)
+{
+    if (index >= L)
+        throw(std::runtime_error("error: try to access a vector of size " + std::to_string(L) + " at index " + std::to_string(index)));
+    
+    return (data[index]);
+}
+
+template<size_t L>
+const float &vec<L>::operator[](size_t index) const
+{
+    if (index >= L)
+        throw(std::runtime_error("error: try to access a vector of size " + std::to_string(L) + " at index " + std::to_string(index)));
+
+    return (data[index]);
+}
+
+template<size_t L>
 bool vec<L>::operator==(const vec<L> &instance) const
 {
     for (size_t i = 0; i < L; i++) 
     {
-        if (data[i] != instance.data[i])
+        if (data[i] != instance[i])
             return (false);
     }
 
@@ -64,7 +82,7 @@ vec<L> vec<L>::operator+(const vec<L> &instance) const
 {
     vec<L> result;
     for (size_t i = 0; i < L; i++) 
-        result.data[i] = data[i] + instance.data[i];
+        result[i] = data[i] + instance[i];
 
     return (result);
 }
@@ -73,7 +91,7 @@ template<size_t L>
 vec<L> &vec<L>::operator+=(const vec<L> &instance)
 {
     for (size_t i = 0; i < L; i++) 
-        data[i] += instance.data[i];
+        data[i] += instance[i];
 
     return (*this);
 }
