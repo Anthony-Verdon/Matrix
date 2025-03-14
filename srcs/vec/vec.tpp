@@ -20,8 +20,19 @@ vec<L>::vec(Args... args)
 template<size_t L>
 vec<L>::vec(const vec<L> &instance)
 {
-    for (size_t i = 0; i < L; i++) 
-        data[i] = instance.data[i];
+    *this = instance;
+}
+
+template<size_t L>
+vec<L> &vec<L>::operator=(const vec<L> &instance)
+{
+    if (this != &instance)
+    {
+        for (size_t i = 0; i < L; i++) 
+            data[i] = instance.data[i];
+    }
+
+    return (*this);
 }
 
 template<size_t L>

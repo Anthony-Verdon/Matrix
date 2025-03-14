@@ -12,6 +12,8 @@ struct vec
         vec(const vec &instance);
         ~vec();
 
+        vec &operator=(const vec &instance);
+
         void print() const;
 
     protected:
