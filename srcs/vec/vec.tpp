@@ -13,9 +13,15 @@ vec<L>::vec(Args... args)
     static_assert(sizeof...(args) == L, "Incorrect number of arguments for vector size.");
     
     float values[] = { static_cast<float>(args)... };
-    for (size_t i = 0; i < L; i++) {
+    for (size_t i = 0; i < L; i++)
         data[i] = values[i];
-    }
+}
+
+template<size_t L>
+vec<L>::vec(const vec<L> &instance)
+{
+    for (size_t i = 0; i < L; i++) 
+        data[i] = instance.data[i];
 }
 
 template<size_t L>

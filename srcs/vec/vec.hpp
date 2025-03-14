@@ -9,6 +9,7 @@ struct vec
         vec();
         template<typename... Args>
         vec(Args... args);
+        vec(const vec &instance);
         ~vec();
 
         void print() const;

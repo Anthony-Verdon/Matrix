@@ -10,5 +10,9 @@ int main()
     vector.print();
 
     vec4 vector4;
+    vector4.print();
+
+    vec2 copy(vector);
+    copy.print();
     return (0);
 }
