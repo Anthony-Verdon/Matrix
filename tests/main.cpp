@@ -2,14 +2,13 @@
 
 int main()
 {
-    vec2 vector;
-    vector.data[0] = 1;
-    vector.data[1] = 2;
+    vec<5> vec(0, 1, 2, 3, 4);
+
+    vec.print();
+
+    vec2 vector(6, 7);
     vector.print();
-    std::cout << vector.x << " " << vector.y << std::endl;
-    vector.x = 3;
-    vector.y = 4;
-    vector.print();
-    std::cout << vector.x << " " << vector.y << std::endl;
+
+    vec4 vector4;
     return (0);
 }
