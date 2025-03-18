@@ -1,7 +1,7 @@
-#include "matrix/matrix.hpp"
+#include "mat/mat.hpp"
 
 template<size_t R, size_t C>
-matrix<R, C>::matrix()
+mat<R, C>::mat()
 {
     static_assert(R != 0, "row number shouldn't be equal to 0");
     static_assert(C != 0, "column number shouldn't be equal to 0");
@@ -9,11 +9,11 @@ matrix<R, C>::matrix()
 
 template<size_t R, size_t C>
 template<typename... Args>
-matrix<R, C>::matrix(Args... args)
+mat<R, C>::mat(Args... args)
 {
     static_assert(R != 0, "row number shouldn't be equal to 0");
     static_assert(C != 0, "column number shouldn't be equal to 0");
-    static_assert(sizeof...(args) == R * C, "Incorrect number of arguments for matrix size.");
+    static_assert(sizeof...(args) == R * C, "Incorrect number of arguments for mat size.");
     
     float values[] = { static_cast<float>(args)... };
     for (size_t i = 0; i < C; i++)
@@ -24,13 +24,13 @@ matrix<R, C>::matrix(Args... args)
 }
 
 template<size_t R, size_t C>
-matrix<R, C>::matrix(const matrix<R, C> &instance)
+mat<R, C>::mat(const mat<R, C> &instance)
 {
     *this = instance;
 }
 
 template<size_t R, size_t C>
-matrix<R, C> &matrix<R, C>::operator=(const matrix<R, C> &instance)
+mat<R, C> &mat<R, C>::operator=(const mat<R, C> &instance)
 {
     if (this != &instance)
     {
@@ -45,30 +45,30 @@ matrix<R, C> &matrix<R, C>::operator=(const matrix<R, C> &instance)
 }
 
 template<size_t R, size_t C>
-matrix<R, C>::~matrix()
+mat<R, C>::~mat()
 {
 }
 
 template<size_t R, size_t C>
-vec<C> &matrix<R, C>::operator[](size_t index)
+vec<C> &mat<R, C>::operator[](size_t index)
 {
     if (index >= R)
-        throw(std::runtime_error("error: try to access a matrix of width " + std::to_string(R) + " at index " + std::to_string(index)));
+        throw(std::runtime_error("error: try to access a mat of width " + std::to_string(R) + " at index " + std::to_string(index)));
     
     return (data[index]);
 }
 
 template<size_t R, size_t C>
-const vec<C> &matrix<R, C>::operator[](size_t index) const
+const vec<C> &mat<R, C>::operator[](size_t index) const
 {
     if (index >= R)
-        throw(std::runtime_error("error: try to access a matrix of width " + std::to_string(R) + " at index " + std::to_string(index)));
+        throw(std::runtime_error("error: try to access a mat of width " + std::to_string(R) + " at index " + std::to_string(index)));
 
     return (data[index]);
 }
 
 template<size_t R, size_t C>
-bool matrix<R, C>::operator==(const matrix<R, C> &instance) const
+bool mat<R, C>::operator==(const mat<R, C> &instance) const
 {
     for (size_t i = 0; i < C; i++)
     {
@@ -83,15 +83,15 @@ bool matrix<R, C>::operator==(const matrix<R, C> &instance) const
 }
 
 template<size_t R, size_t C>
-bool matrix<R, C>::operator!=(const matrix<R, C> &instance) const
+bool mat<R, C>::operator!=(const mat<R, C> &instance) const
 {
     return (!(*this == instance));
 }
 
 template<size_t R, size_t C>
-matrix<R, C> matrix<R, C>::operator+(const matrix<R, C> &instance) const
+mat<R, C> mat<R, C>::operator+(const mat<R, C> &instance) const
 {
-    matrix<R, C> result;
+    mat<R, C> result;
 
     for (size_t j = 0; j < R; j++)
     {
@@ -105,16 +105,16 @@ matrix<R, C> matrix<R, C>::operator+(const matrix<R, C> &instance) const
 }
 
 template<size_t R, size_t C>
-matrix<R, C> &matrix<R, C>::operator+=(const matrix<R, C> &instance)
+mat<R, C> &mat<R, C>::operator+=(const mat<R, C> &instance)
 {
     *this = *this + instance;
     return (*this);
 }
 
 template<size_t R, size_t C>
-matrix<R, C> matrix<R, C>::operator-(const matrix<R, C> &instance) const
+mat<R, C> mat<R, C>::operator-(const mat<R, C> &instance) const
 {
-    matrix<R, C> result;
+    mat<R, C> result;
 
     for (size_t j = 0; j < R; j++)
     {
@@ -128,7 +128,7 @@ matrix<R, C> matrix<R, C>::operator-(const matrix<R, C> &instance) const
 }
 
 template<size_t R, size_t C>
-matrix<R, C> &matrix<R, C>::operator-=(const matrix<R, C> &instance)
+mat<R, C> &mat<R, C>::operator-=(const mat<R, C> &instance)
 {
     *this = *this - instance;
     return (*this);
@@ -136,12 +136,12 @@ matrix<R, C> &matrix<R, C>::operator-=(const matrix<R, C> &instance)
 
 template<size_t R, size_t C>
 template<size_t R2, size_t C2>
-matrix<R, C2> matrix<R, C>::operator*(const matrix<R2, C2> &instance) const
+mat<R, C2> mat<R, C>::operator*(const mat<R2, C2> &instance) const
 {
-    matrix<R, C2> result;
+    mat<R, C2> result;
 
     if (C != R2)
-        throw(std::runtime_error("matrix multiplication: number of column of first matrix should be equal to number of row of second matrix"));
+        throw(std::runtime_error("mat multiplication: number of column of first mat should be equal to number of row of second mat"));
 
     for (size_t j = 0; j < R; j++)
     {
@@ -157,7 +157,7 @@ matrix<R, C2> matrix<R, C>::operator*(const matrix<R2, C2> &instance) const
 }
 
 template<size_t R, size_t C>
-void matrix<R, C>::print() const
+void mat<R, C>::print() const
 {
     for (size_t i = 0; i < R; i++)
     {

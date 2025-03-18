@@ -1,7 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
 #include "vec/vec.hpp"
-#include "matrix/matrix.hpp"
+#include "mat/mat.hpp"
 
 TEST_CASE("vector: instantiation")
 {
@@ -172,7 +172,7 @@ TEST_CASE("matrix: instantiation")
         mat2 matrix2;
         mat3 matrix3;
         mat4 matrix4;
-        matrix<2, 3> matrix2X3;
+        mat<2, 3> matrix2X3;
     }
     SUBCASE("arguments")
     {
@@ -209,7 +209,7 @@ TEST_CASE("matrix: instantiation")
         {
             const size_t R = 2;
             const size_t C = 3;
-            matrix<R, C> matrix2X3(1, 2, 3, 4, 5, 6);
+            mat<R, C> matrix2X3(1, 2, 3, 4, 5, 6);
             for (size_t i = 0; i < C; i++)
             {
                 for (size_t j = 0; j < R; j++)
@@ -255,8 +255,8 @@ TEST_CASE("matrix: instantiation")
         {
             const size_t R = 2;
             const size_t C = 3;
-            matrix<R, C> matrix2X3(1, 2, 3, 4, 5, 6);
-            matrix<R, C> matrixCopy(matrix2X3);
+            mat<R, C> matrix2X3(1, 2, 3, 4, 5, 6);
+            mat<R, C> matrixCopy(matrix2X3);
             for (size_t i = 0; i < C; i++)
             {
                 for (size_t j = 0; j < R; j++)
