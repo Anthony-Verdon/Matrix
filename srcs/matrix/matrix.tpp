@@ -64,6 +64,49 @@ const vec<C> &matrix<R, C>::operator[](size_t index) const
 }
 
 template<size_t R, size_t C>
+bool matrix<R, C>::operator==(const matrix<R, C> &instance) const
+{
+    for (size_t i = 0; i < C; i++)
+    {
+        for (size_t j = 0; j < R; j++)
+        {
+            if (data[j][i] != instance[j][i])
+                return (false);
+        }
+    }
+
+    return (true);
+}
+
+template<size_t R, size_t C>
+bool matrix<R, C>::operator!=(const matrix<R, C> &instance) const
+{
+    return (!(*this == instance));
+}
+
+template<size_t R, size_t C>
+template<size_t R2, size_t C2>
+matrix<R, C2> matrix<R, C>::operator*(const matrix<R2, C2> &instance) const
+{
+    matrix<R, C2> result;
+
+    if (C != R2)
+        throw(std::runtime_error("matrix multiplication: number of column of first matrix should be equal to number of row of second matrix"));
+
+    for (size_t j = 0; j < R; j++)
+    {
+        for (size_t i = 0; i < C2; i++)
+        {
+            result[j][i] = 0;
+            for (size_t k = 0; k < R2; k++)
+                result[j][i] += data[j][k] * instance[k][i];
+        }
+    }
+
+    return (result);
+}
+
+template<size_t R, size_t C>
 void matrix<R, C>::print() const
 {
     for (size_t i = 0; i < R; i++)

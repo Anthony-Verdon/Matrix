@@ -290,4 +290,38 @@ TEST_CASE("matrix: operators")
             CHECK(matrix[j][i] == (i * R + j) + 1);
         }
     }
+    SUBCASE("operator==")
+    {
+        {
+            mat2 matrixA(1, 2, 3, 4);
+            mat2 matrixB = matrixA;
+            CHECK(matrixA == matrixB);
+        }
+        {
+            mat2 matrixA(1, 2, 3, 4);
+            mat2 matrixB(5, 6, 7, 8);
+            CHECK_FALSE(matrixA == matrixB);
+        }
+    }
+    SUBCASE("operator!=")
+    {
+        {
+            mat2 matrixA(1, 2, 3, 4);
+            mat2 matrixB = matrixA;
+            CHECK_FALSE(matrixA != matrixB);
+        }
+        {
+            mat2 matrixA(1, 2, 3, 4);
+            mat2 matrixB(5, 6, 7, 8);
+            CHECK(matrixA != matrixB);
+        }
+    }
+    SUBCASE("operator*")
+    {
+        mat2 matrixA(1, 2, 3, 4);
+        mat2 matrixB(5, 6, 7, 8);
+        mat2 matrixC(23, 34, 31, 46);
+
+        CHECK(matrixC == matrixA * matrixB);
+    }
 }
