@@ -134,6 +134,17 @@ namespace ml
     {
     }
 
+    vec2 &vec2::operator=(const vec2 &instance)
+    {
+        if (this != &instance)
+        {
+            x = instance.x;
+            y = instance.y;
+        }
+
+        return (*this);
+    }
+
     vec2::~vec2()
     {
     }
@@ -148,6 +159,18 @@ namespace ml
 
     vec3::vec3(float x, float y, float z): vec<3>(x, y, z)
     {
+    }
+
+    vec3 &vec3::operator=(const vec3 &instance)
+    {
+        if (this != &instance)
+        {
+            x = instance.x;
+            y = instance.y;
+            z = instance.z;
+        }
+
+        return (*this);
     }
 
     vec3::~vec3()
@@ -166,6 +189,18 @@ namespace ml
     {
     }
 
+    vec4 &vec4::operator=(const vec4 &instance)
+    {
+        if (this != &instance)
+        {
+            x = instance.x;
+            y = instance.y;
+            z = instance.z;
+            w = instance.w;
+        }
+
+        return (*this);
+    }
     vec4::~vec4()
     {
     }

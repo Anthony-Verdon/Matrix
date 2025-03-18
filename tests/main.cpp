@@ -2,6 +2,7 @@
 #include <doctest/doctest.h>
 #include "vec/vec.hpp"
 #include "mat/mat.hpp"
+#include "geometry/geometry.hpp"
 
 TEST_CASE("vector: instantiation")
 {
@@ -86,6 +87,13 @@ TEST_CASE("vector: operators")
         {
             ml::vec<3> vector3(1, 2, 3);
             ml::vec3 vec3Copy = vector3;
+            for (int i = 0; i < 3; i++)
+                CHECK(vec3Copy[i] == (i + 1));
+        }
+        {
+            ml::vec3 vector3(1, 2, 3);
+            ml::vec3 vec3Copy;
+            vec3Copy = vector3;
             for (int i = 0; i < 3; i++)
                 CHECK(vec3Copy[i] == (i + 1));
         }
@@ -401,5 +409,15 @@ TEST_CASE("matrix: speciales matrices")
 
             CHECK(matrixA == matrixB);
         }
+    }
+}
+TEST_CASE("geometry")
+{
+    SUBCASE("normalization of a vector")
+    {
+        ml::vec3 vectorA(3, 0, 0);
+        ml::vec3 vectorB(1, 0, 0);
+
+        CHECK(ml::normalize(vectorA) == vectorB);
     }
 }

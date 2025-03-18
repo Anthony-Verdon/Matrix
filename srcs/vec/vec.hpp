@@ -40,6 +40,7 @@ namespace ml
             vec2();
             vec2(const vec<2> &instance);
             vec2(float x, float y);
+            vec2 &operator=(const vec2 &instance);
             ~vec2();
     };
 
@@ -53,6 +54,7 @@ namespace ml
             vec3();
             vec3(const vec<3> &instance);
             vec3(float x, float y, float z);
+            vec3 &operator=(const vec3 &instance);
             ~vec3();
     };
 
@@ -67,6 +69,7 @@ namespace ml
             vec4();
             vec4(const vec<4> &instance);
             vec4(float x, float y, float z, float w);
+            vec4 &operator=(const vec4 &instance);
             ~vec4();
     };
 }

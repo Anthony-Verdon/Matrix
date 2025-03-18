@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mat/mat.hpp"
+#include "vec/vec.hpp"
 
 namespace ml
 {
@@ -19,3 +20,5 @@ namespace ml
     mat4 perspective(float fov, float aspect, float near, float far);
     mat4 lookAt(const vec3 &position, const vec3 &target, const vec3 &initialUpVector);
 }
+
+#include "geometry/geometry.tpp"
