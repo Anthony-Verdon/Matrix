@@ -13,6 +13,9 @@ struct matrix
         matrix &operator=(const matrix &instance);
         ~matrix();
 
+        vec<C> &operator[](size_t index);
+        const vec<C> &operator[](size_t index) const;
+
         void print() const;
     protected:
         vec<C> data[R];

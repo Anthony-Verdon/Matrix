@@ -201,3 +201,14 @@ TEST_CASE("matrix: instantiation")
         }
     }
 }
+TEST_CASE("matrix: operators")
+{
+    mat2 matrix2(1, 2, 3, 4);
+    size_t R = 2;
+    size_t C = 2;
+    for (size_t i = 0; i < C; i++)
+    {
+        for (size_t j = 0; j < R; j++)
+            CHECK(matrix2[j][i] == (i * R + j) + 1);
+    }
+}
