@@ -176,39 +176,118 @@ TEST_CASE("matrix: instantiation")
     }
     SUBCASE("arguments")
     {
-        mat2 matrix2(1, 2, 3, 4);
-        mat3 matrix3(1, 2, 3, 4, 5, 6, 7, 8, 9);
-        mat4 matrix4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
-        matrix<2, 3> matrix2X3(1, 2, 3, 4, 5, 6);
+        {
+            const size_t R = 2;
+            const size_t C = 2;
+            mat2 matrix2(1, 2, 3, 4);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix2[j][i] == (i * R + j) + 1);
+            }
+        }
+        {
+            const size_t R = 3;
+            const size_t C = 3;
+            mat3 matrix3(1, 2, 3, 4, 5, 6, 7, 8, 9);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix3[j][i] == (i * R + j) + 1);
+            }
+        }
+        {
+            const size_t R = 4;
+            const size_t C = 4;
+            mat4 matrix4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix4[j][i] == (i * R + j) + 1);
+            }
+        }
+        {
+            const size_t R = 2;
+            const size_t C = 3;
+            matrix<R, C> matrix2X3(1, 2, 3, 4, 5, 6);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix2X3[j][i] == (i * R + j) + 1);
+            }
+        }
     }
     SUBCASE("copy")
     {
         {
+            const size_t R = 2;
+            const size_t C = 2;
             mat2 matrix(1, 2, 3, 4);
             mat2 matrixCopy(matrix);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix[j][i] == matrixCopy[j][i]);
+            }
         }
         {
+            const size_t R = 3;
+            const size_t C = 3;
             mat3 matrix(1, 2, 3, 4, 5, 6, 7, 8, 9);
             mat3 matrixCopy(matrix);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix[j][i] == matrixCopy[j][i]);
+            }
         }
         {
+            const size_t R = 4;
+            const size_t C = 4;
             mat4 matrix(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
             mat4 matrixCopy(matrix);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix[j][i] == matrixCopy[j][i]);
+            }
         }
         {
-            matrix<2, 3> matrix2X3(1, 2, 3, 4, 5, 6);
-            matrix<2, 3> matrixCopy(matrix2X3);
+            const size_t R = 2;
+            const size_t C = 3;
+            matrix<R, C> matrix2X3(1, 2, 3, 4, 5, 6);
+            matrix<R, C> matrixCopy(matrix2X3);
+            for (size_t i = 0; i < C; i++)
+            {
+                for (size_t j = 0; j < R; j++)
+                CHECK(matrix2X3[j][i] == matrixCopy[j][i]);
+            }
         }
     }
 }
 TEST_CASE("matrix: operators")
 {
-    mat2 matrix2(1, 2, 3, 4);
-    size_t R = 2;
-    size_t C = 2;
-    for (size_t i = 0; i < C; i++)
+    SUBCASE("operator=")
     {
-        for (size_t j = 0; j < R; j++)
-            CHECK(matrix2[j][i] == (i * R + j) + 1);
+        const size_t R = 2;
+        const size_t C = 2;
+        mat2 matrix(1, 2, 3, 4);
+        mat2 matrixCopy = matrix;
+        for (size_t i = 0; i < C; i++)
+        {
+            for (size_t j = 0; j < R; j++)
+            CHECK(matrix[j][i] == matrixCopy[j][i]);
+        }
+    }
+    SUBCASE("operator[]")
+    {
+        mat2 matrix(1, 2, 3, 4);
+        const size_t R = 2;
+        const size_t C = 2;
+        for (size_t i = 0; i < C; i++)
+        {
+            for (size_t j = 0; j < R; j++)
+            CHECK(matrix[j][i] == (i * R + j) + 1);
+        }
     }
 }
