@@ -4,12 +4,14 @@
 template<size_t L>
 vec<L>::vec()
 {
+    static_assert(L != 0, "length shouldn't be equal to 0");
 }
 
 template<size_t L>
 template<typename... Args>
 vec<L>::vec(Args... args)
 {
+    static_assert(L != 0, "length shouldn't be equal to 0");
     static_assert(sizeof...(args) == L, "Incorrect number of arguments for vector size.");
     
     float values[] = { static_cast<float>(args)... };

@@ -3,12 +3,16 @@
 template<size_t R, size_t C>
 matrix<R, C>::matrix()
 {
+    static_assert(R != 0, "row number shouldn't be equal to 0");
+    static_assert(C != 0, "column number shouldn't be equal to 0");
 }
 
 template<size_t R, size_t C>
 template<typename... Args>
 matrix<R, C>::matrix(Args... args)
 {
+    static_assert(R != 0, "row number shouldn't be equal to 0");
+    static_assert(C != 0, "column number shouldn't be equal to 0");
     static_assert(sizeof...(args) == R * C, "Incorrect number of arguments for matrix size.");
     
     float values[] = { static_cast<float>(args)... };
