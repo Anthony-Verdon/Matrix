@@ -1,6 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
 #include "vec/vec.hpp"
+#include "matrix/matrix.hpp"
 
 TEST_CASE("vector: instantiation")
 {
@@ -163,4 +164,22 @@ TEST_CASE("vector: operators")
         vectorA -= vectorB;
         CHECK(vectorA == vectorC);
     }
+}
+TEST_CASE("matrix: instantiation")
+{
+    SUBCASE("no argument")
+    {
+        mat2 matrix2;
+        mat3 matrix3;
+        mat4 matrix4;
+        matrix<2, 3> matrix2X3;
+    }
+    SUBCASE("arguments")
+    {
+        mat2 matrix2(1, 2, 3, 4);
+        mat3 matrix3(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        mat4 matrix4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+        matrix<2, 3> matrix2X3(1, 2, 3, 4, 5, 6);
+    }
+
 }
