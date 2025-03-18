@@ -20,6 +20,27 @@ matrix<R, C>::matrix(Args... args)
 }
 
 template<size_t R, size_t C>
+matrix<R, C>::matrix(const matrix<R, C> &instance)
+{
+    *this = instance;
+}
+
+template<size_t R, size_t C>
+matrix<R, C> &matrix<R, C>::operator=(const matrix<R, C> &instance)
+{
+    if (this != &instance)
+    {
+        for (size_t i = 0; i < C; i++)
+        {
+            for (size_t j = 0; j < R; j++)
+                data[j][i] = instance.data[j][i];
+        }
+    }
+
+    return (*this);
+}
+
+template<size_t R, size_t C>
 matrix<R, C>::~matrix()
 {
 }

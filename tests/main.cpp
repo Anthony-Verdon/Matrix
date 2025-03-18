@@ -181,5 +181,23 @@ TEST_CASE("matrix: instantiation")
         mat4 matrix4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
         matrix<2, 3> matrix2X3(1, 2, 3, 4, 5, 6);
     }
-
+    SUBCASE("copy")
+    {
+        {
+            mat2 matrix(1, 2, 3, 4);
+            mat2 matrixCopy(matrix);
+        }
+        {
+            mat3 matrix(1, 2, 3, 4, 5, 6, 7, 8, 9);
+            mat3 matrixCopy(matrix);
+        }
+        {
+            mat4 matrix(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+            mat4 matrixCopy(matrix);
+        }
+        {
+            matrix<2, 3> matrix2X3(1, 2, 3, 4, 5, 6);
+            matrix<2, 3> matrixCopy(matrix2X3);
+        }
+    }
 }

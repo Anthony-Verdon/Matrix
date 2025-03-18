@@ -9,6 +9,8 @@ struct matrix
         matrix();
         template<typename... Args>
         matrix(Args... args);
+        matrix(const matrix &instance);
+        matrix &operator=(const matrix &instance);
         ~matrix();
 
         void print() const;
