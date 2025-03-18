@@ -7,6 +7,7 @@ namespace ml
     {
         static_assert(R != 0, "row number shouldn't be equal to 0");
         static_assert(C != 0, "column number shouldn't be equal to 0");
+        uniform(0);
     }
 
     template<size_t R, size_t C>
@@ -156,6 +157,25 @@ namespace ml
         }
 
         return (result);
+    }
+
+    template<size_t R, size_t C>
+    void mat<R, C>::uniform(float value)
+    {
+        for (size_t i = 0; i < R; i++)
+        {
+            for (size_t j = 0; j < C; j++)
+                data[j][i] = value;
+        }
+    }
+
+    template<size_t R, size_t C>
+    void mat<R, C>::identity()
+    {
+        static_assert(R == C, "for an identity matrix, row and column should be equal");
+        uniform(0);
+        for (size_t i = 0; i < R; i++)
+            data[i][i] = 1;
     }
 
     template<size_t R, size_t C>

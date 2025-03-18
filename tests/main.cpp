@@ -359,3 +359,47 @@ TEST_CASE("matrix: operators")
         CHECK(matrixC == matrixA * matrixB);
     }
 }
+TEST_CASE("matrix: speciales matrices")
+{
+    SUBCASE("uniform")
+    {
+        {
+            ml::mat2 matrixA;
+            matrixA.uniform(0);
+            ml::mat2 matrixB(0, 0, 0, 0);
+
+            CHECK(matrixA == matrixB);
+        }
+        {
+            ml::mat2 matrixA;
+            matrixA.uniform(5);
+            ml::mat2 matrixB(5, 5, 5, 5);
+
+            CHECK(matrixA == matrixB);
+        }
+    }
+    SUBCASE("identity")
+    {
+        {
+            ml::mat2 matrixA;
+            matrixA.identity();
+            ml::mat2 matrixB(1, 0, 0, 1);
+
+            CHECK(matrixA == matrixB);
+        }
+        {
+            ml::mat3 matrixA;
+            matrixA.identity();
+            ml::mat3 matrixB(1, 0, 0, 0, 1, 0, 0, 0, 1);
+
+            CHECK(matrixA == matrixB);
+        }
+        {
+            ml::mat4 matrixA;
+            matrixA.identity();
+            ml::mat4 matrixB(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
+            CHECK(matrixA == matrixB);
+        }
+    }
+}
