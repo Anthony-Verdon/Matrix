@@ -89,6 +89,52 @@ bool matrix<R, C>::operator!=(const matrix<R, C> &instance) const
 }
 
 template<size_t R, size_t C>
+matrix<R, C> matrix<R, C>::operator+(const matrix<R, C> &instance) const
+{
+    matrix<R, C> result;
+
+    for (size_t j = 0; j < R; j++)
+    {
+        for (size_t i = 0; i < C; i++)
+        {
+            result[j][i] = data[j][i] + instance[j][i];
+        }
+    }
+
+    return (result);
+}
+
+template<size_t R, size_t C>
+matrix<R, C> &matrix<R, C>::operator+=(const matrix<R, C> &instance)
+{
+    *this = *this + instance;
+    return (*this);
+}
+
+template<size_t R, size_t C>
+matrix<R, C> matrix<R, C>::operator-(const matrix<R, C> &instance) const
+{
+    matrix<R, C> result;
+
+    for (size_t j = 0; j < R; j++)
+    {
+        for (size_t i = 0; i < C; i++)
+        {
+            result[j][i] = data[j][i] - instance[j][i];
+        }
+    }
+
+    return (result);
+}
+
+template<size_t R, size_t C>
+matrix<R, C> &matrix<R, C>::operator-=(const matrix<R, C> &instance)
+{
+    *this = *this - instance;
+    return (*this);
+}
+
+template<size_t R, size_t C>
 template<size_t R2, size_t C2>
 matrix<R, C2> matrix<R, C>::operator*(const matrix<R2, C2> &instance) const
 {

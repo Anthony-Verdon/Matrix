@@ -91,9 +91,7 @@ vec<L> vec<L>::operator+(const vec<L> &instance) const
 template<size_t L>
 vec<L> &vec<L>::operator+=(const vec<L> &instance)
 {
-    for (size_t i = 0; i < L; i++) 
-        data[i] += instance[i];
-
+    *this = *this + instance;
     return (*this);
 }
 
@@ -110,9 +108,7 @@ vec<L> vec<L>::operator-(const vec<L> &instance) const
 template<size_t L>
 vec<L> &vec<L>::operator-=(const vec<L> &instance)
 {
-    for (size_t i = 0; i < L; i++) 
-        data[i] -= instance[i];
-
+    *this = *this - instance;
     return (*this);
 }
 

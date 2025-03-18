@@ -18,6 +18,10 @@ struct matrix
 
         bool operator==(const matrix &instance) const;
         bool operator!=(const matrix &instance) const;
+        matrix operator+(const matrix &instance) const;
+        matrix &operator+=(const matrix &instance);
+        matrix operator-(const matrix &instance) const;
+        matrix &operator-=(const matrix &instance);
         template<size_t R2, size_t C2>
         matrix<R, C2> operator*(const matrix<R2, C2> &instance) const;
 

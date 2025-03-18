@@ -316,6 +316,40 @@ TEST_CASE("matrix: operators")
             CHECK(matrixA != matrixB);
         }
     }
+    SUBCASE("operator+")
+    {
+        mat2 matrixA(1, 2, 3, 4);
+        mat2 matrixB(5, 6, 7, 8);
+        mat2 matrixC(6, 8, 10, 12);
+
+        CHECK(matrixC == matrixA + matrixB);
+    }
+    SUBCASE("operator+=")
+    {
+        mat2 matrixA(1, 2, 3, 4);
+        mat2 matrixB(5, 6, 7, 8);
+        mat2 matrixC(6, 8, 10, 12);
+
+        matrixA += matrixB;
+        CHECK(matrixC == matrixA);
+    }
+    SUBCASE("operator-")
+    {
+        mat2 matrixA(1, 2, 3, 4);
+        mat2 matrixB(5, 6, 7, 8);
+        mat2 matrixC(-4, -4, -4, -4);
+
+        CHECK(matrixC == matrixA - matrixB);
+    }
+    SUBCASE("operator-=")
+    {
+        mat2 matrixA(1, 2, 3, 4);
+        mat2 matrixB(5, 6, 7, 8);
+        mat2 matrixC(-4, -4, -4, -4);
+
+        matrixA -= matrixB;
+        CHECK(matrixC == matrixA);
+    }
     SUBCASE("operator*")
     {
         mat2 matrixA(1, 2, 3, 4);
