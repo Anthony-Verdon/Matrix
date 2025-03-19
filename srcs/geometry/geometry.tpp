@@ -24,7 +24,10 @@ namespace ml
         ));
     }
 
-    float dotProduct(const vec3 &vectorA, const vec3 &vectorB);
+    float dotProduct(const vec3 &vectorA, const vec3 &vectorB)
+    {
+        return (vectorA.x * vectorB.x + vectorA.y * vectorB.y + vectorA.z * vectorB.z);
+    }
     
     // matrix
     mat4 translate(const mat4 &matrix, const vec3 &vector);

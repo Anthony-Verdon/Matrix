@@ -428,4 +428,11 @@ TEST_CASE("geometry")
 
         CHECK(ml::crossProduct(vectorA, vectorB) == vectorC);
     }
+    SUBCASE("dot product of a vector")
+    {
+        ml::vec3 vectorA(1, 2, 3);
+        ml::vec3 vectorB(3, 4, 5);
+
+        CHECK(ml::dotProduct(vectorA, vectorB) == 26);
+    }
 }
