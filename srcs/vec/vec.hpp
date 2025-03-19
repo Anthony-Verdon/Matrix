@@ -24,6 +24,8 @@ namespace ml
             vec &operator+=(const vec &instance);
             vec operator-(const vec &instance) const;
             vec &operator-=(const vec &instance);
+            vec operator*(float scalar) const;
+            vec &operator*=(float scalar);
 
             float *ptr() { return (&data[0]); }
             const float *ptr() const { return (&data[0]); }
@@ -33,6 +35,9 @@ namespace ml
         protected:
             float data[L];
     };
+
+    template<size_t L>
+    vec<L> operator*(float scalar, const vec<L> vector);
 
     struct vec2: public vec<2>
     {

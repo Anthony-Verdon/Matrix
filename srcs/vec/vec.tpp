@@ -116,6 +116,33 @@ namespace ml
     }
 
     template<size_t L>
+    vec<L> vec<L>::operator*(float scalar) const
+    {
+        vec<L> result;
+        for (size_t i = 0; i < L; i++) 
+            result[i] = data[i] * scalar;
+
+        return (result);
+    }
+
+    template<size_t L>
+    vec<L> &vec<L>::operator*=(float scalar)
+    {
+        *this = *this * scalar;
+        return (*this);
+    }
+
+    template<size_t L>
+    vec<L> operator*(float scalar, const vec<L> &vector)
+    {
+        vec<L> result;
+        for (size_t i = 0; i < L; i++) 
+            result[i] = vector[i] * scalar;
+
+        return (result);
+    }
+
+    template<size_t L>
     void vec<L>::print() const
     {
         for (size_t i = 0; i < L; i++)
