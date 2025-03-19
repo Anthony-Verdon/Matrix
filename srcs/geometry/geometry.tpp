@@ -77,7 +77,31 @@ namespace ml
         return (result);
     }
 
-    mat4 rotate(const vec4 &quat);
+    mat4 rotate(const vec4 &quat) //@todo create a struct quat
+    {
+        mat4 result;
+        result[0][0] = 2 * (pow(quat.w, 2) + pow(quat.x, 2)) - 1;
+        result[0][1] = 2 * (quat.x * quat.y - quat.w * quat.z);
+        result[0][2] = 2 * (quat.x * quat.z + quat.w * quat.y);
+        result[0][3] = 0;
+
+        result[1][0] = 2 * (quat.x * quat.y + quat.w * quat.z);
+        result[1][1] = 2 * (pow(quat.w, 2) + pow(quat.y, 2)) - 1;
+        result[1][2] = 2 * (quat.y * quat.z - quat.w * quat.x);
+        result[1][3] = 0;
+
+        result[2][0] = 2 * (quat.x * quat.z - quat.w * quat.y);
+        result[2][1] = 2 * (quat.y * quat.z + quat.w * quat.x);
+        result[2][2] = 2 * (pow(quat.w, 2) + pow(quat.z, 2)) - 1;
+        result[2][3] = 0;
+
+        result[3][0] = 0;
+        result[3][1] = 0;
+        result[3][2] = 0;
+        result[3][3] = 1;
+
+        return (result);
+    }
 
     // 3D
     mat4 perspective(float fov, float aspect, float near, float far);
