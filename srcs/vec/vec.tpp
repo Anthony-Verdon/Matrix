@@ -145,11 +145,7 @@ namespace ml
     template<size_t L>
     vec<L> operator*(float scalar, const vec<L> &vector)
     {
-        vec<L> result;
-        for (size_t i = 0; i < L; i++) 
-            result[i] = vector[i] * scalar;
-
-        return (result);
+        return (vector * scalar);
     }
 
     template<size_t L>
