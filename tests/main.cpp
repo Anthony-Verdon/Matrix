@@ -420,4 +420,12 @@ TEST_CASE("geometry")
 
         CHECK(ml::normalize(vectorA) == vectorB);
     }
+    SUBCASE("cross product of a vector")
+    {
+        ml::vec3 vectorA(1, 2, 3);
+        ml::vec3 vectorB(3, 4, 5);
+        ml::vec3 vectorC(-2, 4, -2);
+
+        CHECK(ml::crossProduct(vectorA, vectorB) == vectorC);
+    }
 }

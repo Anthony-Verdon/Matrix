@@ -13,7 +13,17 @@ namespace ml
         return (vec3(vector.x / length, vector.y / length, vector.z / length));
     }
 
-    vec3 crossProduct(const vec3 &vectorA, const vec3 &vectorB);
+    vec3 crossProduct(const vec3 &vectorA, const vec3 &vectorB)
+    {
+        vec3 vectorAB(vectorB.x - vectorA.x, vectorB.y - vectorA.y, vectorB.z - vectorA.z);
+
+        return (vec3(
+            vectorA.y * vectorAB.z - vectorA.z * vectorAB.y,
+            vectorA.z * vectorAB.x - vectorA.x * vectorAB.z,
+            vectorA.x * vectorAB.y - vectorA.y * vectorAB.x
+        ));
+    }
+
     float dotProduct(const vec3 &vectorA, const vec3 &vectorB);
     
     // matrix
