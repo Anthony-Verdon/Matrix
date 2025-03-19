@@ -5,13 +5,20 @@
 namespace ml
 {
     // vector
-    vec3 normalize(const vec3 &vector)
+    template<size_t L>
+    vec<L> normalize(const vec<L> &vector)
     {
-        float length = sqrt(powf(vector.x, 2) + powf(vector.y, 2) + powf(vector.z, 2));
+        float length = 0;
+        for (size_t i = 0; i < L; i++)
+            length += powf(vector[i], 2);
+        length = sqrt(length);
         if (length == 0)
             throw(std::runtime_error("normalization of a vector: length = 0, error"));
         
-        return (vec3(vector.x / length, vector.y / length, vector.z / length));
+        vec<L> result;
+        for (size_t i = 0; i < L; i++)
+            result[i] = vector[i] / length;
+        return (result);
     }
 
     vec3 crossProduct(const vec3 &vectorA, const vec3 &vectorB)
@@ -25,9 +32,13 @@ namespace ml
         ));
     }
 
-    float dotProduct(const vec3 &vectorA, const vec3 &vectorB)
+    template<size_t L>
+    float dotProduct(const vec<L> &vectorA, const vec<L> &vectorB)
     {
-        return (vectorA.x * vectorB.x + vectorA.y * vectorB.y + vectorA.z * vectorB.z);
+        float result = 0;
+        for (size_t i = 0; i < L; i++)
+            result += vectorA[i] * vectorB[i];
+        return (result);
     }
     
     // matrix

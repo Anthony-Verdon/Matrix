@@ -6,9 +6,11 @@
 namespace ml
 {
     // vector
-    vec3 normalize(const vec3 &vector);
+    template<size_t L>
+    vec<L> normalize(const vec<L> &vector);
     vec3 crossProduct(const vec3 &vectorA, const vec3 &vectorB);
-    float dotProduct(const vec3 &vectorA, const vec3 &vectorB);
+    template<size_t L>
+    float dotProduct(const vec<L> &vectorA, const vec<L> &vectorB);
     
     // matrix
     mat4 translate(const vec3 &vector);
