@@ -46,7 +46,9 @@ namespace ml
     {
         mat4 result;
         result.identity();
-        result[3] = vec4(vector.x, vector.y, vector.z, 1); //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        result[0][3] = vector.x; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        result[1][3] = vector.y; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        result[2][3] = vector.z; //@todo: create a constructor for vec4 taking (vec3, w) parameters
         return (result);
     }
 
@@ -61,29 +63,31 @@ namespace ml
 
     inline mat4 rotate(float angle, const vec3 &axis)
     {
+        angle = Toolbox::DegToRad(angle); //@todo put it in this lib
+
         float cosAngle = cosf(angle);
         float sinAngle = sinf(angle);
         vec3 axisN = normalize(axis);
 
         mat4 result;
         result[0][0] = cosAngle + pow(axisN.x, 2) * (1 - cosAngle);
-        result[0][1] = axisN.x * axisN.y * (1 - cosAngle) - axisN.z * sinAngle;
-        result[0][2] = axisN.x * axisN.z * (1 - cosAngle) - axisN.y * sinAngle;
-        result[0][3] = 0;
-
-        result[1][0] = axisN.y * axisN.x * (1 - cosAngle) - axisN.z * sinAngle;
-        result[1][1] = cosAngle + pow(axisN.y, 2) * (1 - cosAngle);
-        result[1][2] = axisN.y * axisN.z * (1 - cosAngle) - axisN.x * sinAngle;
-        result[1][3] = 0;
-
-        result[2][0] = axisN.z * axisN.x * (1 - cosAngle) - axisN.y * sinAngle;
-        result[2][1] = axisN.z * axisN.y * (1 - cosAngle) - axisN.x * sinAngle;
-        result[2][2] = cosAngle + pow(axisN.z, 2) * (1 - cosAngle);
-        result[2][3] = 0;
-
+        result[1][0] = axisN.x * axisN.y * (1 - cosAngle) - axisN.z * sinAngle;
+        result[2][0] = axisN.x * axisN.z * (1 - cosAngle) + axisN.y * sinAngle;
         result[3][0] = 0;
+
+        result[0][1] = axisN.y * axisN.x * (1 - cosAngle) + axisN.z * sinAngle;
+        result[1][1] = cosAngle + pow(axisN.y, 2) * (1 - cosAngle);
+        result[2][1] = axisN.y * axisN.z * (1 - cosAngle) - axisN.x * sinAngle;
         result[3][1] = 0;
+
+        result[0][2] = axisN.z * axisN.x * (1 - cosAngle) - axisN.y * sinAngle;
+        result[1][2] = axisN.z * axisN.y * (1 - cosAngle) + axisN.x * sinAngle;
+        result[2][2] = cosAngle + pow(axisN.z, 2) * (1 - cosAngle);
         result[3][2] = 0;
+
+        result[0][3] = 0;
+        result[1][3] = 0;
+        result[2][3] = 0;
         result[3][3] = 1;
 
         return (result);
