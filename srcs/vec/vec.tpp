@@ -116,6 +116,16 @@ namespace ml
     }
 
     template<size_t L>
+    vec<L> vec<L>::operator-() const
+    {
+        vec<L> result;
+        for (size_t i = 0; i < L; i++) 
+            result[i] = -data[i];
+
+        return (result);
+    }
+
+    template<size_t L>
     vec<L> vec<L>::operator*(float scalar) const
     {
         vec<L> result;
