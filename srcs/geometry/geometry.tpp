@@ -47,7 +47,36 @@ namespace ml
         return (result);
     }
 
-    mat4 rotate(const mat4 &matrix, float angle, const vec3 &axis);
+    mat4 rotate(float angle, const vec3 &axis)
+    {
+        float cosAngle = cosf(angle);
+        float sinAngle = sinf(angle);
+        vec3 axisN = normalize(axis);
+
+        mat4 result;
+        result[0][0] = cosAngle + pow(axisN.x, 2) * (1 - cosAngle);
+        result[0][1] = axisN.x * axisN.y * (1 - cosAngle) - axisN.z * sinAngle;
+        result[0][2] = axisN.x * axisN.z * (1 - cosAngle) - axisN.y * sinAngle;
+        result[0][3] = 0;
+
+        result[1][0] = axisN.y * axisN.x * (1 - cosAngle) - axisN.z * sinAngle;
+        result[1][1] = cosAngle + pow(axisN.y, 2) * (1 - cosAngle);
+        result[1][2] = axisN.y * axisN.z * (1 - cosAngle) - axisN.x * sinAngle;
+        result[1][3] = 0;
+
+        result[2][0] = axisN.z * axisN.x * (1 - cosAngle) - axisN.y * sinAngle;
+        result[2][1] = axisN.z * axisN.y * (1 - cosAngle) - axisN.x * sinAngle;
+        result[2][2] = cosAngle + pow(axisN.z, 2) * (1 - cosAngle);
+        result[2][3] = 0;
+
+        result[3][0] = 0;
+        result[3][1] = 0;
+        result[3][2] = 0;
+        result[3][3] = 1;
+
+        return (result);
+    }
+
     mat4 rotate(const vec4 &quat);
 
     // 3D

@@ -13,7 +13,7 @@ namespace ml
     // matrix
     mat4 translate(const vec3 &vector);
     mat4 scale(const vec3 &vector);
-    mat4 rotate(const mat4 &matrix, float angle, const vec3 &axis);
+    mat4 rotate(float angle, const vec3 &axis);
     mat4 rotate(const vec4 &quat);
 
     // 3D

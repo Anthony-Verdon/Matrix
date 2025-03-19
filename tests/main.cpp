@@ -435,7 +435,7 @@ TEST_CASE("geometry")
 
         CHECK(ml::dotProduct(vectorA, vectorB) == 26);
     }
-    SUBCASE("translation")
+    SUBCASE("translate")
     {
         ml::vec3 vector(1, 2, 3);
         ml::mat4 matrix(1, 0, 0, 1, 0, 1, 0, 2, 0, 0, 1, 3, 0, 0, 0, 1);
@@ -446,5 +446,10 @@ TEST_CASE("geometry")
         ml::vec3 vector(1, 2, 3);
         ml::mat4 matrix(1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1);
         CHECK(ml::scale(vector) == matrix); //@todo: check with OpenGL project if it's good
+    }
+    SUBCASE("rotate")
+    {
+        ml::vec3 vector(1, 2, 3);
+        ml::rotate(90, vector).print(); //@todo: check with OpenGL project if it's good
     }
 }
