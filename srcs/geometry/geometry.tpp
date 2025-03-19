@@ -6,7 +6,7 @@ namespace ml
 {
     // vector
     template<size_t L>
-    vec<L> normalize(const vec<L> &vector)
+    inline vec<L> normalize(const vec<L> &vector)
     {
         float length = 0;
         for (size_t i = 0; i < L; i++)
@@ -21,7 +21,7 @@ namespace ml
         return (result);
     }
 
-    vec3 crossProduct(const vec3 &vectorA, const vec3 &vectorB)
+    inline vec3 crossProduct(const vec3 &vectorA, const vec3 &vectorB)
     {
         vec3 vectorAB(vectorB.x - vectorA.x, vectorB.y - vectorA.y, vectorB.z - vectorA.z);
 
@@ -33,7 +33,7 @@ namespace ml
     }
 
     template<size_t L>
-    float dotProduct(const vec<L> &vectorA, const vec<L> &vectorB)
+    inline float dotProduct(const vec<L> &vectorA, const vec<L> &vectorB)
     {
         float result = 0;
         for (size_t i = 0; i < L; i++)
@@ -42,7 +42,7 @@ namespace ml
     }
     
     // matrix
-    mat4 translate(const vec3 &vector)
+    inline mat4 translate(const vec3 &vector)
     {
         mat4 result;
         result.identity();
@@ -50,7 +50,7 @@ namespace ml
         return (result);
     }
 
-    mat4 scale(const vec3 &vector)
+    inline mat4 scale(const vec3 &vector)
     {
         mat4 result;
         result.identity();
@@ -59,7 +59,7 @@ namespace ml
         return (result);
     }
 
-    mat4 rotate(float angle, const vec3 &axis)
+    inline mat4 rotate(float angle, const vec3 &axis)
     {
         float cosAngle = cosf(angle);
         float sinAngle = sinf(angle);
@@ -89,7 +89,7 @@ namespace ml
         return (result);
     }
 
-    mat4 rotate(const vec4 &quat) //@todo create a struct quat
+    inline mat4 rotate(const vec4 &quat) //@todo create a struct quat
     {
         mat4 result;
         result[0][0] = 2 * (pow(quat.w, 2) + pow(quat.x, 2)) - 1;
@@ -116,7 +116,7 @@ namespace ml
     }
 
     // 3D
-    mat4 perspective(float fov, float aspect, float near, float far)
+    inline mat4 perspective(float fov, float aspect, float near, float far)
     {   
         float tangent = tanf(Toolbox::DegToRad(fov / 2)); //@todo put it in this lib
         float halfHeight = near * tangent;
@@ -152,7 +152,7 @@ namespace ml
         return (result);
     }
 
-    mat4 lookAt(const vec3 &position, const vec3 &target, const vec3 &initialUpVector)
+    inline mat4 lookAt(const vec3 &position, const vec3 &target, const vec3 &initialUpVector)
     {
         vec3 front = normalize(position - target);
         vec3 right = normalize(crossProduct(initialUpVector, front));

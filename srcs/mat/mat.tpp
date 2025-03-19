@@ -3,7 +3,7 @@
 namespace ml
 {
     template<size_t R, size_t C>
-    mat<R, C>::mat()
+    inline mat<R, C>::mat()
     {
         static_assert(R != 0, "row number shouldn't be equal to 0");
         static_assert(C != 0, "column number shouldn't be equal to 0");
@@ -12,7 +12,7 @@ namespace ml
 
     template<size_t R, size_t C>
     template<typename... Args>
-    mat<R, C>::mat(Args... args)
+    inline mat<R, C>::mat(Args... args)
     {
         static_assert(R != 0, "row number shouldn't be equal to 0");
         static_assert(C != 0, "column number shouldn't be equal to 0");
@@ -27,13 +27,13 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    mat<R, C>::mat(const mat<R, C> &instance)
+    inline mat<R, C>::mat(const mat<R, C> &instance)
     {
         *this = instance;
     }
 
     template<size_t R, size_t C>
-    mat<R, C> &mat<R, C>::operator=(const mat<R, C> &instance)
+    inline mat<R, C> &mat<R, C>::operator=(const mat<R, C> &instance)
     {
         if (this != &instance)
         {
@@ -48,12 +48,12 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    mat<R, C>::~mat()
+    inline mat<R, C>::~mat()
     {
     }
 
     template<size_t R, size_t C>
-    vec<C> &mat<R, C>::operator[](size_t index)
+    inline vec<C> &mat<R, C>::operator[](size_t index)
     {
         if (index >= R)
             throw(std::runtime_error("error: try to access a mat of width " + std::to_string(R) + " at index " + std::to_string(index)));
@@ -62,7 +62,7 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    const vec<C> &mat<R, C>::operator[](size_t index) const
+    inline const vec<C> &mat<R, C>::operator[](size_t index) const
     {
         if (index >= R)
             throw(std::runtime_error("error: try to access a mat of width " + std::to_string(R) + " at index " + std::to_string(index)));
@@ -71,7 +71,7 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    bool mat<R, C>::operator==(const mat<R, C> &instance) const
+    inline bool mat<R, C>::operator==(const mat<R, C> &instance) const
     {
         for (size_t i = 0; i < C; i++)
         {
@@ -86,13 +86,13 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    bool mat<R, C>::operator!=(const mat<R, C> &instance) const
+    inline bool mat<R, C>::operator!=(const mat<R, C> &instance) const
     {
         return (!(*this == instance));
     }
 
     template<size_t R, size_t C>
-    mat<R, C> mat<R, C>::operator+(const mat<R, C> &instance) const
+    inline mat<R, C> mat<R, C>::operator+(const mat<R, C> &instance) const
     {
         mat<R, C> result;
 
@@ -108,14 +108,14 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    mat<R, C> &mat<R, C>::operator+=(const mat<R, C> &instance)
+    inline mat<R, C> &mat<R, C>::operator+=(const mat<R, C> &instance)
     {
         *this = *this + instance;
         return (*this);
     }
 
     template<size_t R, size_t C>
-    mat<R, C> mat<R, C>::operator-(const mat<R, C> &instance) const
+    inline mat<R, C> mat<R, C>::operator-(const mat<R, C> &instance) const
     {
         mat<R, C> result;
 
@@ -131,7 +131,7 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    mat<R, C> &mat<R, C>::operator-=(const mat<R, C> &instance)
+    inline mat<R, C> &mat<R, C>::operator-=(const mat<R, C> &instance)
     {
         *this = *this - instance;
         return (*this);
@@ -139,7 +139,7 @@ namespace ml
 
     template<size_t R, size_t C>
     template<size_t R2, size_t C2>
-    mat<R, C2> mat<R, C>::operator*(const mat<R2, C2> &instance) const
+    inline mat<R, C2> mat<R, C>::operator*(const mat<R2, C2> &instance) const
     {
         mat<R, C2> result;
 
@@ -161,14 +161,14 @@ namespace ml
 
     template<size_t R, size_t C>
     template<size_t R2, size_t C2>
-    mat<R, C2> &mat<R, C>::operator*=(const mat<R2, C2> &instance)
+    inline mat<R, C2> &mat<R, C>::operator*=(const mat<R2, C2> &instance)
     {
         *this = *this * instance;
         return (*this);
     }
 
     template<size_t R, size_t C>
-    void mat<R, C>::uniform(float value)
+    inline void mat<R, C>::uniform(float value)
     {
         for (size_t i = 0; i < R; i++)
         {
@@ -178,7 +178,7 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    void mat<R, C>::identity()
+    inline void mat<R, C>::identity()
     {
         static_assert(R == C, "for an identity matrix, row and column should be equal");
         uniform(0);
@@ -187,7 +187,7 @@ namespace ml
     }
 
     template<size_t R, size_t C>
-    void mat<R, C>::print() const
+    inline void mat<R, C>::print() const
     {
         for (size_t i = 0; i < R; i++)
         {
