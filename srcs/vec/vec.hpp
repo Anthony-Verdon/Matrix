@@ -25,6 +25,9 @@ namespace ml
             vec operator-(const vec &instance) const;
             vec &operator-=(const vec &instance);
 
+            float *ptr() { return (&data[0]); }
+            const float *ptr() const { return (&data[0]); }
+
             void print() const;
 
         protected:

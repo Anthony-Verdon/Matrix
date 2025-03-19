@@ -30,6 +30,9 @@ namespace ml
             void uniform(float value);
             void identity();
             
+            float *ptr() { return (&data[0][0]); }
+            const float *ptr() const { return (&data[0][0]); }
+
             void print() const;
         protected:
             vec<C> data[R];
