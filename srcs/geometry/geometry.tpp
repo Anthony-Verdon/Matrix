@@ -1,4 +1,5 @@
 #include "geometry/geometry.hpp"
+#include "Toolbox.hpp"
 #include <cmath>
 
 namespace ml
@@ -104,6 +105,41 @@ namespace ml
     }
 
     // 3D
-    mat4 perspective(float fov, float aspect, float near, float far);
+    mat4 perspective(float fov, float aspect, float near, float far)
+    {   
+        float tangent = tanf(Toolbox::DegToRad(fov / 2)); //@todo put it in this lib
+        float halfHeight = near * tangent;
+        float halfWidth = halfHeight * aspect;
+        
+        float left = halfWidth;
+        float right = -halfWidth;
+        float top = halfHeight;
+        float bottom = -halfHeight;
+        
+        mat4 result;
+
+        result[0][0] = (2 * near) / (right - left);
+        result[0][1] = 0;
+        result[0][2] = (right + left) / (right - left);
+        result[0][3] = 0;
+
+        result[1][0] = 0;
+        result[1][1] = (2 * near) / (top - bottom);
+        result[1][2] = (top + bottom) / (top - bottom);
+        result[1][3] = 0;
+
+        result[2][0] = 0;
+        result[2][1] = 0;
+        result[2][2] = (-(far + near)) / (far - near);
+        result[2][3] = (-2 * far * near) / (far - near);
+
+        result[3][0] = 0;
+        result[3][1] = 0;
+        result[3][2] = -1;
+        result[3][3] = 0;
+
+        return (result);
+    }
+
     mat4 lookAt(const vec3 &position, const vec3 &target, const vec3 &initialUpVector);
 }
