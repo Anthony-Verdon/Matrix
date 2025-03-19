@@ -187,6 +187,18 @@ namespace ml
     }
 
     template<size_t R, size_t C>
+    inline std::unique_ptr<float[]> mat<R, C>::ptr() const
+    {
+        std::unique_ptr<float[]> array = std::make_unique<float[]>(R * C);
+        for (size_t i = 0; i < C; i++)
+        {
+            for (size_t j = 0; j < R; j++)
+                array[i * R + j] = data[j][i];
+        }
+        return (array);
+    }
+
+    template<size_t R, size_t C>
     inline void mat<R, C>::print() const
     {
         for (size_t i = 0; i < R; i++)

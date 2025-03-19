@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vec/vec.hpp"
+#include <memory>
 
 namespace ml
 {
@@ -32,8 +33,7 @@ namespace ml
             void uniform(float value);
             void identity();
             
-            float *ptr() { return (&data[0][0]); }
-            const float *ptr() const { return (&data[0][0]); }
+            std::unique_ptr<float[]> ptr() const;
 
             void print() const;
         protected:
