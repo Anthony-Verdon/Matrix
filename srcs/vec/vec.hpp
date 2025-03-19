@@ -27,6 +27,8 @@ namespace ml
             vec &operator-=(const vec &instance);
             vec operator*(float scalar) const;
             vec &operator*=(float scalar);
+            vec operator*(const vec &instance) const;
+            vec &operator*=(const vec &instance);
 
             float *ptr() { return (&data[0]); }
             const float *ptr() const { return (&data[0]); }
