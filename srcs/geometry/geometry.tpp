@@ -38,7 +38,15 @@ namespace ml
         return (result);
     }
 
-    mat4 scale(const mat4 &matrix, const vec3 &vector);
+    mat4 scale(const vec3 &vector)
+    {
+        mat4 result;
+        result.identity();
+        for (size_t i = 0; i < 3; i++)
+            result[i][i] = vector[i];
+        return (result);
+    }
+
     mat4 rotate(const mat4 &matrix, float angle, const vec3 &axis);
     mat4 rotate(const vec4 &quat);
 
