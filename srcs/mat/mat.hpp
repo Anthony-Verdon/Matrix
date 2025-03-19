@@ -27,7 +27,7 @@ namespace ml
             template<size_t R2, size_t C2>
             mat<R, C2> operator*(const mat<R2, C2> &instance) const;
             template<size_t R2, size_t C2>
-            mat<R, C2> &operator*=(const mat<R2, C2> &instance) const;
+            mat<R, C2> &operator*=(const mat<R2, C2> &instance);
 
             void uniform(float value);
             void identity();

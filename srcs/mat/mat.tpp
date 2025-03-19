@@ -161,11 +161,12 @@ namespace ml
 
     template<size_t R, size_t C>
     template<size_t R2, size_t C2>
-    mat<R, C2> &mat<R, C>::operator*=(const mat<R2, C2> &instance) const
+    mat<R, C2> &mat<R, C>::operator*=(const mat<R2, C2> &instance)
     {
         *this = *this * instance;
         return (*this);
     }
+
     template<size_t R, size_t C>
     void mat<R, C>::uniform(float value)
     {
