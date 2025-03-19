@@ -40,7 +40,7 @@ namespace ml
     };
 
     template<size_t L>
-    vec<L> operator*(float scalar, const vec<L> vector);
+    vec<L> operator*(float scalar, const vec<L> &vector);
 
     struct vec2: public vec<2>
     {
