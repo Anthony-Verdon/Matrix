@@ -30,7 +30,14 @@ namespace ml
     }
     
     // matrix
-    mat4 translate(const mat4 &matrix, const vec3 &vector);
+    mat4 translate(const vec3 &vector)
+    {
+        mat4 result;
+        result.identity();
+        result[3] = vec4(vector.x, vector.y, vector.z, 1); //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        return (result);
+    }
+
     mat4 scale(const mat4 &matrix, const vec3 &vector);
     mat4 rotate(const mat4 &matrix, float angle, const vec3 &axis);
     mat4 rotate(const vec4 &quat);

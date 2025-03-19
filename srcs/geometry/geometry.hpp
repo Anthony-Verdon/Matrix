@@ -11,7 +11,7 @@ namespace ml
     float dotProduct(const vec3 &vectorA, const vec3 &vectorB);
     
     // matrix
-    mat4 translate(const mat4 &matrix, const vec3 &vector);
+    mat4 translate(const vec3 &vector);
     mat4 scale(const mat4 &matrix, const vec3 &vector);
     mat4 rotate(const mat4 &matrix, float angle, const vec3 &axis);
     mat4 rotate(const vec4 &quat);
