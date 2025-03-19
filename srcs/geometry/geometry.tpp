@@ -141,5 +141,38 @@ namespace ml
         return (result);
     }
 
-    mat4 lookAt(const vec3 &position, const vec3 &target, const vec3 &initialUpVector);
+    mat4 lookAt(const vec3 &position, const vec3 &target, const vec3 &initialUpVector)
+    {
+        vec3 front = normalize(position - target);
+        vec3 right = normalize(crossProduct(initialUpVector, front));
+        vec3 up = normalize(crossProduct(front, right));
+
+        vec3 translation;
+        translation[0] = dotProduct(position, right);
+        translation[1] = dotProduct(position, up);
+        translation[2] = dotProduct(position, front);
+
+        mat4 result;
+        result[0][0] = right.x;
+        result[0][1] = up.x;
+        result[0][2] = front.x;
+        result[0][3] = 0;
+
+        result[1][0] = right.y;
+        result[1][1] = up.y;
+        result[1][2] = front.y;
+        result[1][3] = 0;
+
+        result[2][0] = right.z;
+        result[2][1] = up.z;
+        result[2][2] = front.z;
+        result[2][3] = 0;
+
+        result[3][0] = -translation.x;
+        result[3][1] = -translation.y;
+        result[3][2] = -translation.z;
+        result[3][3] = 1;
+
+        return (result);
+    }
 }
