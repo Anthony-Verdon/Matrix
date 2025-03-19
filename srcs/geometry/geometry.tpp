@@ -118,31 +118,24 @@ namespace ml
     // 3D
     inline mat4 perspective(float fov, float aspect, float near, float far)
     {   
-        float tangent = tanf(Toolbox::DegToRad(fov / 2)); //@todo put it in this lib
-        float halfHeight = near * tangent;
-        float halfWidth = halfHeight * aspect;
-        
-        float left = halfWidth;
-        float right = -halfWidth;
-        float top = halfHeight;
-        float bottom = -halfHeight;
+        float tangent = tanf(Toolbox::DegToRad(fov) / 2); //@todo put it in this lib
         
         mat4 result;
 
-        result[0][0] = (2 * near) / (right - left);
+        result[0][0] = 1 / (aspect * tangent);
         result[0][1] = 0;
-        result[0][2] = (right + left) / (right - left);
+        result[0][2] = 0;
         result[0][3] = 0;
 
         result[1][0] = 0;
-        result[1][1] = (2 * near) / (top - bottom);
-        result[1][2] = (top + bottom) / (top - bottom);
+        result[1][1] = 1 / tangent;
+        result[1][2] = 0;
         result[1][3] = 0;
 
         result[2][0] = 0;
         result[2][1] = 0;
-        result[2][2] = (-(far + near)) / (far - near);
-        result[2][3] = (-2 * far * near) / (far - near);
+        result[2][2] = -((far + near) / (far - near));
+        result[2][3] = -((2 * far * near) / (far - near));
 
         result[3][0] = 0;
         result[3][1] = 0;
@@ -165,23 +158,23 @@ namespace ml
 
         mat4 result;
         result[0][0] = right.x;
-        result[0][1] = up.x;
-        result[0][2] = front.x;
-        result[0][3] = 0;
+        result[1][0] = up.x;
+        result[2][0] = front.x;
+        result[3][0] = 0;
 
-        result[1][0] = right.y;
+        result[0][1] = right.y;
         result[1][1] = up.y;
-        result[1][2] = front.y;
-        result[1][3] = 0;
+        result[2][1] = front.y;
+        result[3][1] = 0;
 
-        result[2][0] = right.z;
-        result[2][1] = up.z;
+        result[0][2] = right.z;
+        result[1][2] = up.z;
         result[2][2] = front.z;
-        result[2][3] = 0;
+        result[3][2] = 0;
 
-        result[3][0] = -translation.x;
-        result[3][1] = -translation.y;
-        result[3][2] = -translation.z;
+        result[0][3] = -translation.x;
+        result[1][3] = -translation.y;
+        result[2][3] = -translation.z;
         result[3][3] = 1;
 
         return (result);
