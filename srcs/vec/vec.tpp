@@ -188,8 +188,8 @@ namespace ml
     {
         if (this != &instance)
         {
-            x = instance.x;
-            y = instance.y;
+            for (size_t i = 0; i < 2; i++) 
+                data[i] = instance[i];
         }
 
         return (*this);
@@ -215,9 +215,8 @@ namespace ml
     {
         if (this != &instance)
         {
-            x = instance.x;
-            y = instance.y;
-            z = instance.z;
+            for (size_t i = 0; i < 3; i++) 
+                data[i] = instance[i];
         }
 
         return (*this);
@@ -243,10 +242,8 @@ namespace ml
     {
         if (this != &instance)
         {
-            x = instance.x;
-            y = instance.y;
-            z = instance.z;
-            w = instance.w;
+            for (size_t i = 0; i < 4; i++) 
+                data[i] = instance[i];
         }
 
         return (*this);

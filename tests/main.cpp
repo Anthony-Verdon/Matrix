@@ -157,12 +157,30 @@ TEST_CASE("vector: operators")
         vectorA += vectorB;
         CHECK(vectorA == vectorC);
     }
-    SUBCASE("operator-")
+    SUBCASE("operator- (substraction)")
     {
         ml::vec2 vectorA(1, 2);
         ml::vec2 vectorB(3, 4);
         ml::vec2 vectorC(-2, -2);
         CHECK(vectorA - vectorB == vectorC);
+    }
+    SUBCASE("operator- (reverse)")
+    {
+        {
+            const ml::vec4 vectorA(1, 2, 3, 4);
+            ml::vec4 vectorC = vectorA;
+            ml::vec4 vectorB(-1, -2, -3, -4);
+            
+            vectorC = -vectorC;
+            CHECK(vectorB == vectorC);
+        }
+        {
+            ml::vec4 vectorC(1, 2, 3, 4);
+            ml::vec4 vectorB(-1, -2, -3, -4);
+        
+            vectorC = -vectorC;
+            CHECK(vectorB == vectorC);
+        }
     }
     SUBCASE("operator-=")
     {
@@ -438,7 +456,7 @@ TEST_CASE("geometry")
     SUBCASE("translate")
     {
         ml::vec3 vector(1, 2, 3);
-        ml::mat4 matrix(1, 0, 0, 1, 0, 1, 0, 2, 0, 0, 1, 3, 0, 0, 0, 1);
+        ml::mat4 matrix(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 2, 3, 1);
         CHECK(ml::translate(vector) == matrix); //@todo: check with OpenGL project if it's good
     }
     SUBCASE("scale")
@@ -450,6 +468,6 @@ TEST_CASE("geometry")
     SUBCASE("rotate")
     {
         ml::vec3 vector(1, 2, 3);
-        ml::rotate(90, vector).print(); //@todo: check with OpenGL project if it's good
+        ml::rotate(90, vector); //@todo: check with OpenGL project if it's good
     }
 }
