@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vec/vec.hpp"
+#include <ostream>
 #include <memory>
 
 namespace ml
