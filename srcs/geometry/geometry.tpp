@@ -1,5 +1,4 @@
 #include "geometry/geometry.hpp"
-#include "Toolbox.hpp"
 #include <cmath>
 
 namespace ml
@@ -63,7 +62,7 @@ namespace ml
 
     inline mat4 rotate(const mat4 &matrix, float angle, const vec3 &axis)
     {
-        angle = Toolbox::DegToRad(angle); //@todo put it in this lib
+        angle = radians(angle); //@todo put it in this lib
 
         float cosAngle = cosf(angle);
         float sinAngle = sinf(angle);
@@ -144,7 +143,7 @@ namespace ml
     // 3D
     inline mat4 perspective(float fov, float aspect, float near, float far)
     {   
-        float tangent = tanf(Toolbox::DegToRad(fov) / 2); //@todo put it in this lib
+        float tangent = tanf(degrees(fov) / 2); //@todo put it in this lib
         
         mat4 result;
 
