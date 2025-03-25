@@ -42,26 +42,26 @@ namespace ml
     }
     
     // matrix
-    inline mat4 translate(const vec3 &vector)
+    inline mat4 translate(const mat4 &matrix, const vec3 &vector)
     {
-        mat4 result;
-        result.identity();
-        result[0][3] = vector.x; //@todo: create a constructor for vec4 taking (vec3, w) parameters
-        result[1][3] = vector.y; //@todo: create a constructor for vec4 taking (vec3, w) parameters
-        result[2][3] = vector.z; //@todo: create a constructor for vec4 taking (vec3, w) parameters
-        return (result);
+        mat4 translation;
+        translation.identity();
+        translation[0][3] = vector.x; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        translation[1][3] = vector.y; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        translation[2][3] = vector.z; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        return (matrix * translation);
     }
 
-    inline mat4 scale(const vec3 &vector)
+    inline mat4 scale(const mat4 &matrix, const vec3 &vector)
     {
-        mat4 result;
-        result.identity();
+        mat4 scale;
+        scale.identity();
         for (size_t i = 0; i < 3; i++)
-            result[i][i] = vector[i];
-        return (result);
+        scale[i][i] = vector[i];
+        return (matrix * scale);
     }
 
-    inline mat4 rotate(float angle, const vec3 &axis)
+    inline mat4 rotate(const mat4 &matrix, float angle, const vec3 &axis)
     {
         angle = Toolbox::DegToRad(angle); //@todo put it in this lib
 
@@ -69,54 +69,76 @@ namespace ml
         float sinAngle = sinf(angle);
         vec3 axisN = normalize(axis);
 
-        mat4 result;
-        result[0][0] = cosAngle + pow(axisN.x, 2) * (1 - cosAngle);
-        result[1][0] = axisN.x * axisN.y * (1 - cosAngle) - axisN.z * sinAngle;
-        result[2][0] = axisN.x * axisN.z * (1 - cosAngle) + axisN.y * sinAngle;
-        result[3][0] = 0;
+        mat4 rotation;
+        rotation[0][0] = cosAngle + pow(axisN.x, 2) * (1 - cosAngle);
+        rotation[1][0] = axisN.x * axisN.y * (1 - cosAngle) - axisN.z * sinAngle;
+        rotation[2][0] = axisN.x * axisN.z * (1 - cosAngle) + axisN.y * sinAngle;
+        rotation[3][0] = 0;
 
-        result[0][1] = axisN.y * axisN.x * (1 - cosAngle) + axisN.z * sinAngle;
-        result[1][1] = cosAngle + pow(axisN.y, 2) * (1 - cosAngle);
-        result[2][1] = axisN.y * axisN.z * (1 - cosAngle) - axisN.x * sinAngle;
-        result[3][1] = 0;
+        rotation[0][1] = axisN.y * axisN.x * (1 - cosAngle) + axisN.z * sinAngle;
+        rotation[1][1] = cosAngle + pow(axisN.y, 2) * (1 - cosAngle);
+        rotation[2][1] = axisN.y * axisN.z * (1 - cosAngle) - axisN.x * sinAngle;
+        rotation[3][1] = 0;
 
-        result[0][2] = axisN.z * axisN.x * (1 - cosAngle) - axisN.y * sinAngle;
-        result[1][2] = axisN.z * axisN.y * (1 - cosAngle) + axisN.x * sinAngle;
-        result[2][2] = cosAngle + pow(axisN.z, 2) * (1 - cosAngle);
-        result[3][2] = 0;
+        rotation[0][2] = axisN.z * axisN.x * (1 - cosAngle) - axisN.y * sinAngle;
+        rotation[1][2] = axisN.z * axisN.y * (1 - cosAngle) + axisN.x * sinAngle;
+        rotation[2][2] = cosAngle + pow(axisN.z, 2) * (1 - cosAngle);
+        rotation[3][2] = 0;
 
-        result[0][3] = 0;
-        result[1][3] = 0;
-        result[2][3] = 0;
-        result[3][3] = 1;
+        rotation[0][3] = 0;
+        rotation[1][3] = 0;
+        rotation[2][3] = 0;
+        rotation[3][3] = 1;
 
-        return (result);
+        return (matrix * rotation);
     }
 
-    inline mat4 rotate(const vec4 &quat) //@todo create a struct quat
+    inline mat4 rotate(const mat4 &matrix, const vec4 &quat) //@todo create a struct quat
     {
+        return (matrix * toMat(quat));
+    }
+
+    inline mat4 toMat(const vec4 &quat) //@todo create a struct quat
+    {
+        mat4 matrix;
+        matrix[0][0] = 2 * (pow(quat.w, 2) + pow(quat.x, 2)) - 1;
+        matrix[0][1] = 2 * (quat.x * quat.y - quat.w * quat.z);
+        matrix[0][2] = 2 * (quat.x * quat.z + quat.w * quat.y);
+        matrix[0][3] = 0;
+
+        matrix[1][0] = 2 * (quat.x * quat.y + quat.w * quat.z);
+        matrix[1][1] = 2 * (pow(quat.w, 2) + pow(quat.y, 2)) - 1;
+        matrix[1][2] = 2 * (quat.y * quat.z - quat.w * quat.x);
+        matrix[1][3] = 0;
+
+        matrix[2][0] = 2 * (quat.x * quat.z - quat.w * quat.y);
+        matrix[2][1] = 2 * (quat.y * quat.z + quat.w * quat.x);
+        matrix[2][2] = 2 * (pow(quat.w, 2) + pow(quat.z, 2)) - 1;
+        matrix[2][3] = 0;
+
+        matrix[3][0] = 0;
+        matrix[3][1] = 0;
+        matrix[3][2] = 0;
+        matrix[3][3] = 1;
+
+        return (matrix);
+    }
+
+    // 2D
+    inline mat4 ortho(float left, float right, float bottom, float top, float near, float far)
+    {
+        (void)near;
+        (void)far;
         mat4 result;
-        result[0][0] = 2 * (pow(quat.w, 2) + pow(quat.x, 2)) - 1;
-        result[0][1] = 2 * (quat.x * quat.y - quat.w * quat.z);
-        result[0][2] = 2 * (quat.x * quat.z + quat.w * quat.y);
-        result[0][3] = 0;
+        result.identity();
 
-        result[1][0] = 2 * (quat.x * quat.y + quat.w * quat.z);
-        result[1][1] = 2 * (pow(quat.w, 2) + pow(quat.y, 2)) - 1;
-        result[1][2] = 2 * (quat.y * quat.z - quat.w * quat.x);
-        result[1][3] = 0;
+		result[0][0] = 2 / (right - left);
+		result[1][1] = 2 / (top - bottom);
+		result[2][2] = -1;
+		result[3][0] = -(right + left) / (right - left);
+		result[3][1] = -(top + bottom) / (top - bottom);
 
-        result[2][0] = 2 * (quat.x * quat.z - quat.w * quat.y);
-        result[2][1] = 2 * (quat.y * quat.z + quat.w * quat.x);
-        result[2][2] = 2 * (pow(quat.w, 2) + pow(quat.z, 2)) - 1;
-        result[2][3] = 0;
-
-        result[3][0] = 0;
-        result[3][1] = 0;
-        result[3][2] = 0;
-        result[3][3] = 1;
-
-        return (result);
+		return result;
     }
 
     // 3D
@@ -182,5 +204,26 @@ namespace ml
         result[3][3] = 1;
 
         return (result);
+    }
+
+    // math
+    float degrees(float radians)
+    {
+        return (roundf(radians * (180 / M_PI) * 100000) / 100000);
+    }
+
+    float radians(float degrees)
+    {
+        return (roundf(degrees * (M_PI / 180) * 100000) / 100000);
+    }
+
+    float clamp(float value, float min, float max)
+    {
+        if (value < min)
+            return (min);
+        else if (value > max)
+            return (max);
+        else
+            return (value);
     }
 }

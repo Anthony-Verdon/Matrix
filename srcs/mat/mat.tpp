@@ -33,6 +33,14 @@ namespace ml
     }
 
     template<size_t R, size_t C>
+    inline mat<R, C>::mat(float value)
+    {
+        uniform(0);
+        for (size_t i = 0; i < R; i++)
+            data[i][i] = value;
+    }
+
+    template<size_t R, size_t C>
     inline mat<R, C> &mat<R, C>::operator=(const mat<R, C> &instance)
     {
         if (this != &instance)

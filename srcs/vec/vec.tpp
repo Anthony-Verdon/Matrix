@@ -159,6 +159,32 @@ namespace ml
     }
 
     template<size_t L>
+    inline vec<L> vec<L>::operator/(float scalar) const
+    {
+        if (scalar == 0)
+            throw(std::runtime_error("error: division by 0"));
+
+        vec<L> result;
+        for (size_t i = 0; i < L; i++) 
+            result[i] = data[i] / scalar;
+
+        return (result);
+    }
+
+    template<size_t L>
+    inline vec<L> &vec<L>::operator/=(float scalar)
+    {
+        *this = *this / scalar;
+        return (*this);
+    }
+
+    template<size_t L>
+    inline vec<L> operator/(float scalar, const vec<L> &vector)
+    {
+        return (vector / scalar);
+    }
+
+    template<size_t L>
     inline vec<L> &vec<L>::operator*=(const vec<L> &instance)
     {
         *this = *this * instance;
@@ -207,6 +233,10 @@ namespace ml
     {
     }
 
+    inline vec3::vec3(const vec<2> &instance, float z): vec<3>(instance[0], instance[1], z)
+    {
+    }
+
     inline vec3::vec3(float x, float y, float z): vec<3>(x, y, z)
     {
     }
@@ -231,6 +261,14 @@ namespace ml
     }
 
     inline vec4::vec4(const vec<4> &instance): vec<4>(instance)
+    {
+    }
+
+    inline vec4::vec4(const vec<2> &instance, float z, float w): vec<4>(instance[0], instance[1], z, w)
+    {
+    }
+
+    inline vec4::vec4(const vec<3> &instance, float w): vec<4>(instance[0], instance[1], instance[2], w)
     {
     }
 

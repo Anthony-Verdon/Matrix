@@ -14,6 +14,7 @@ namespace ml
             template<typename... Args>
             mat(Args... args);
             mat(const mat &instance);
+            mat(float value);
             mat &operator=(const mat &instance);
             ~mat();
 
