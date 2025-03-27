@@ -8,7 +8,7 @@ set_symbols("debug")
 add_requires("doctest")
 
 target("Matrix")
-    set_kind("static")
+    set_kind("headeronly")
     add_includedirs("srcs", {public = true})
 
 target("Tester")

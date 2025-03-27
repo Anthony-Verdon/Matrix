@@ -206,17 +206,17 @@ namespace ml
     }
 
     // math
-    float degrees(float radians)
+    inline float degrees(float radians)
     {
         return (roundf(radians * (180 / M_PI) * 100000) / 100000);
     }
 
-    float radians(float degrees)
+    inline float radians(float degrees)
     {
         return (roundf(degrees * (M_PI / 180) * 100000) / 100000);
     }
 
-    float clamp(float value, float min, float max)
+    inline float clamp(float value, float min, float max)
     {
         if (value < min)
             return (min);
