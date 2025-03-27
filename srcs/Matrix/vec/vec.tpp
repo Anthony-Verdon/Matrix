@@ -1,4 +1,4 @@
-#include "vec/vec.hpp"
+#include "Matrix/vec/vec.hpp"
 #include <iostream>
 
 namespace ml

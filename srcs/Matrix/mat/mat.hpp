@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vec/vec.hpp"
+#include "Matrix/vec/vec.hpp"
 #include <ostream>
 #include <memory>
 
@@ -47,4 +47,4 @@ namespace ml
     typedef mat<4, 4> mat4;
 }
 
-#include "mat/mat.tpp"
+#include "Matrix/mat/mat.tpp"

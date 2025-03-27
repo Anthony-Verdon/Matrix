@@ -1,7 +1,7 @@
 #pragma once
 
-#include "mat/mat.hpp"
-#include "vec/vec.hpp"
+#include "Matrix/mat/mat.hpp"
+#include "Matrix/vec/vec.hpp"
 
 namespace ml
 {
@@ -32,4 +32,4 @@ namespace ml
     float clamp(float value, float min, float max);
 }
 
-#include "geometry/geometry.tpp"
+#include "Matrix/geometry/geometry.tpp"

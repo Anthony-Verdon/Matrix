@@ -1,8 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
-#include "vec/vec.hpp"
-#include "mat/mat.hpp"
-#include "geometry/geometry.hpp"
+#include "Matrix/Matrix.hpp"
 
 TEST_CASE("vector: instantiation")
 {
