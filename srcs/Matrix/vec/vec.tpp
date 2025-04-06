@@ -219,6 +219,10 @@ namespace ml
     {
     }
 
+    inline vec2::vec2(const vec2 &instance): vec<2>(instance[0], instance[1])
+    {
+    }
+
     inline vec2::vec2(float x, float y): vec<2>(x, y)
     {
     }
@@ -243,6 +247,10 @@ namespace ml
     }
 
     inline vec3::vec3(const vec<3> &instance): vec<3>(instance)
+    {
+    }
+
+    inline vec3::vec3(const vec3 &instance): vec<3>(instance[0], instance[1], instance[2])
     {
     }
 
@@ -274,6 +282,10 @@ namespace ml
     }
 
     inline vec4::vec4(const vec<4> &instance): vec<4>(instance)
+    {
+    }
+
+    inline vec4::vec4(const vec4 &instance): vec<4>(instance[0], instance[1], instance[2], instance[3])
     {
     }
 

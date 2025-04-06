@@ -81,6 +81,10 @@ TEST_CASE("vector: operators")
             ml::vec2 vec2Copy = vector2;
             for (int i = 0; i < 2; i++)
                 CHECK(vec2Copy[i] == (i + 1));
+            vector2[0]++;
+            vector2[1]++;
+            for (int i = 0; i < 2; i++)
+                CHECK(vec2Copy[i] == (i + 1));
         }
         {
             ml::vec<3> vector3(1, 2, 3);
