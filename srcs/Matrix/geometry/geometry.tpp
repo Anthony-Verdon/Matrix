@@ -45,9 +45,9 @@ namespace ml
     {
         mat4 translation;
         translation.identity();
-        translation[0][3] = vector.x; //@todo: create a constructor for vec4 taking (vec3, w) parameters
-        translation[1][3] = vector.y; //@todo: create a constructor for vec4 taking (vec3, w) parameters
-        translation[2][3] = vector.z; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        translation[0][3] = vector[0]; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        translation[1][3] = vector[1]; //@todo: create a constructor for vec4 taking (vec3, w) parameters
+        translation[2][3] = vector[2]; //@todo: create a constructor for vec4 taking (vec3, w) parameters
         return (matrix * translation);
     }
 
