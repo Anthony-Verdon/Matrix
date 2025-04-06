@@ -82,6 +82,18 @@ namespace ml
     }
 
     template<size_t L>
+    inline bool vec<L>::operator<(const vec<L> &instance) const
+    {
+        for (size_t i = 0; i < L; i++) 
+        {
+            if (data[i] < instance[i])
+                return (true);
+        }
+
+        return (false);
+    }
+
+    template<size_t L>
     inline vec<L> vec<L>::operator+(const vec<L> &instance) const
     {
         vec<L> result;

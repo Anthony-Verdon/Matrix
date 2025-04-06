@@ -20,6 +20,8 @@ namespace ml
 
             bool operator==(const vec &instance) const;
             bool operator!=(const vec &instance) const;
+            bool operator<(const vec &instance) const;
+
             vec operator+(const vec &instance) const;
             vec &operator+=(const vec &instance);
             vec operator-(const vec &instance) const;
