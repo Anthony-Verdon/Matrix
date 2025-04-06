@@ -195,7 +195,8 @@ namespace ml
     inline void vec<L>::print() const
     {
         for (size_t i = 0; i < L; i++)
-            std::cout << i << ": " << data[i] << std::endl;
+            std::cout << data[i] << " ";
+        std::cout << std::endl;
     }
 
     inline vec2::vec2(): vec<2>()
