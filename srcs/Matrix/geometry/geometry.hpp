@@ -11,6 +11,8 @@ namespace ml
     vec3 crossProduct(const vec3 &vectorA, const vec3 &vectorB);
     template<size_t L>
     float dotProduct(const vec<L> &vectorA, const vec<L> &vectorB);
+    template<size_t L>
+    float length(const vec<L> &vector);
     
     // matrix
     mat4 translate(const mat4 &matrix, const vec3 &vector);

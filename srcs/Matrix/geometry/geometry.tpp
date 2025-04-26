@@ -7,16 +7,13 @@ namespace ml
     template<size_t L>
     inline vec<L> normalize(const vec<L> &vector)
     {
-        float length = 0;
-        for (size_t i = 0; i < L; i++)
-            length += powf(vector[i], 2);
-        length = sqrt(length);
-        if (length == 0)
+        float l = length(vector);
+        if (l == 0)
             throw(std::runtime_error("normalization of a vector: length = 0, error"));
         
         vec<L> result;
         for (size_t i = 0; i < L; i++)
-            result[i] = vector[i] / length;
+            result[i] = vector[i] / l;
         return (result);
     }
 
@@ -40,6 +37,17 @@ namespace ml
         return (result);
     }
     
+    template<size_t L>
+    inline float length(const vec<L> &vector)
+    {
+        float length = 0;
+        for (size_t i = 0; i < L; i++)
+            length += powf(vector[i], 2);
+        length = sqrt(length);
+
+        return (length);
+    }
+
     // matrix
     inline mat4 translate(const mat4 &matrix, const vec3 &vector)
     {
